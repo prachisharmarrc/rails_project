@@ -5,7 +5,7 @@
   <%= submit_tag 'Search' %>
 <% end %>
 
-<%= link_to 'New Course', new_course_path %>
+<tr><%= will_paginate @courses %></tr>
 
 <table>
   <thead>
@@ -13,7 +13,8 @@
       <th>Title</th>
       <th>Description</th>
       <th>Price</th>
-      <th>Actions</th>
+      <th>Lessons</th>
+      <th>Enrollments</th>
     </tr>
   </thead>
   <tbody>
@@ -22,15 +23,13 @@
         <td><%= link_to course.title, course_path(course) %></td>
         <td><%= truncate(course.description, length: 50) %></td>
         <td><%= number_to_currency(course.price) %></td>
-        <td>
-          <%= link_to 'View Lessons', course_lessons_path(course) %> |
-          <%= link_to 'View Enrollments', enrollments_path(course_id: course.id) %> |
-          <%= link_to 'Edit', edit_course_path(course) %> |
-          <%= link_to 'Delete', course_path(course), method: :delete, data: { confirm: 'Are you sure?' } %>
-        </td>
+        <td><%= link_to 'View Lessons', course_lessons_path(course) %></td>
+        <td> <%= link_to 'View Enrollments', enrollments_path(course_id: course.id) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= will_paginate @courses %>
+
+<%= link_to 'New Course', new_course_path %>
+

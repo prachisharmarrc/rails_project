@@ -6,6 +6,7 @@ class UsersController < ApplicationController
     end
   
     def show
+      @enrollments = @user.enrollments.includes(:course)
     end
   
     def new

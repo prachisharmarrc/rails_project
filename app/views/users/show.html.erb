@@ -1,4 +1,19 @@
 <h1><%= @user.name %></h1>
-<p>Email: <%= @user.email %></p>
+<p><%= @user.email %></p>
+
+<h2>Enrolled Courses</h2>
+<% if @enrollments.any? %>
+  <ul>
+    <% @enrollments.each do |enrollment| %>
+      <li>
+        <%= link_to enrollment.course.title, course_path(enrollment.course) %> -
+        <%= number_to_currency(enrollment.course.price) %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No enrolled courses.</p>
+<% end %>
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

@@ -2,7 +2,7 @@ class EnrollmentsController < ApplicationController
     before_action :set_enrollment, only: [:show, :edit, :update, :destroy]
   
     def index
-      @enrollments = Enrollment.all
+      @enrollments = Enrollment.includes(:user, :course).all
     end
   
     def show
