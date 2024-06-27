@@ -1,23 +1,12 @@
 <h1><%= @course.title %></h1>
 <p><%= @course.description %></p>
-<%= link_to 'Edit', edit_course_path(@course) %>
-<%= link_to 'Back to Courses', courses_path %>
-
+<p>Price: <%= number_to_currency(@course.price) %></p>
+<p><%= link_to 'Edit', edit_course_path(@course) %> | <%= link_to 'Back', courses_path %></p>
 <h2>Lessons</h2>
-<%= link_to 'New Lesson', new_course_lesson_path(@course) %>
 <% @lessons.each do |lesson| %>
   <div>
-    <h3><%= link_to lesson.title, course_lesson_path(@course, lesson) %></h3>
-    <p><%= lesson.content %></p>
-    <%= link_to 'Edit', edit_course_lesson_path(@course, lesson) %>
-    <%= link_to 'Delete', course_lesson_path(@course, lesson), method: :delete, data: { confirm: 'Are you sure?' } %>
-    <h4>Discussions</h4>
-    <%= link_to 'New Discussion', new_course_lesson_discussion_path(@course, lesson) %>
-    <% lesson.discussions.each do |discussion| %>
-      <div>
-        <p><%= discussion.content %></p>
-        <p><%= discussion.user.name %></p>
-        </div>
-    <% end %>
+    <h3><%= link_to lesson.title, lesson_path(lesson) %></h3>
+    <p><%= lesson.content.truncate(100) %></p>
   </div>
 <% end %>
+<%= link_to 'Add Lesson', new_course_lesson_path(@course) %>

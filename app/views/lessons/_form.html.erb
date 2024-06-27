@@ -12,13 +12,7 @@
 
   <div class="field">
     <%= form.label :course_id %>
-    <%= form.hidden_field :course_id, value: params[:course_id] %>
-    <p><strong>Course:</strong> <%= @lesson.course.title %></p>
-  </div>
-
-  <div class="field">
-    <%= form.label :video %>
-    <%= form.file_field :video %>
+    <%= form.collection_select :course_id, Course.all, :id, :title %>
   </div>
 
   <div class="actions">

@@ -1,5 +1,11 @@
 <h1><%= @lesson.title %></h1>
 <p><%= @lesson.content %></p>
-<p>Course: <%= @lesson.course.title %></p>
-<%= link_to 'Edit', edit_course_lesson_path(@lesson.course, @lesson) %> |
-<%= link_to 'Back to Lessons', course_lessons_path(@lesson.course) %>
+<p><%= link_to 'Edit', edit_lesson_path(@lesson) %> | <%= link_to 'Back to Course', course_path(@lesson.course) %></p>
+<h2>Discussions</h2>
+<% @lesson.discussions.each do |discussion| %>
+  <div>
+    <p><%= discussion.content %></p>
+    <p><%= link_to 'View Discussion', discussion_path(discussion) %></p>
+  </div>
+<% end %>
+<%= link_to 'Add Discussion', new_lesson_discussion_path(@lesson) %>

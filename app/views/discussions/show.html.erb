@@ -1,6 +1,3 @@
 <h1>Discussion</h1>
-<p>User: <%= @discussion.user.name %></p>
-<p>Lesson: <%= @discussion.lesson.title %></p>
 <p><%= @discussion.content %></p>
-<%= link_to 'Edit', edit_discussion_path(@discussion) %> |
-<%= link_to 'Back to Discussions', discussions_path %>
+<p><%= link_to 'Back to Lesson', lesson_path(@discussion.lesson) %></p>

@@ -1,21 +1,23 @@
 <h1>Enrollments</h1>
+
 <%= link_to 'New Enrollment', new_enrollment_path %>
+
 <table>
   <thead>
     <tr>
       <th>User</th>
       <th>Course</th>
-      <th colspan="3"></th>
     </tr>
   </thead>
   <tbody>
     <% @enrollments.each do |enrollment| %>
       <tr>
-        <td><%= enrollment.user.name %></td>
-        <td><%= enrollment.course.title %></td>
-        <td><%= link_to 'Show', enrollment %></td>
-        <td><%= link_to 'Edit', edit_enrollment_path(enrollment) %></td>
-        <td><%= link_to 'Destroy', enrollment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to enrollment.user.name, user_path(enrollment.user) %></td>
+        <td><%= link_to enrollment.course.title, course_path(enrollment.course) %></td>
+        <td>
+          <%= link_to 'Edit', edit_enrollment_path(enrollment) %> |
+          <%= link_to 'Delete', enrollment_path(enrollment), method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
       </tr>
     <% end %>
   </tbody>
