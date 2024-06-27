@@ -67,3 +67,11 @@ group :test do
 end
 
 gem 'faker'
+
+gem 'will_paginate', '~> 3.3.0'
+
+gem 'activeadmin'
+
+gem 'devise'
+
+gem 'active_storage_validations'

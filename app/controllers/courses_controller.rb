@@ -2,11 +2,7 @@ class CoursesController < ApplicationController
     before_action :set_course, only: [:show, :edit, :update, :destroy]
   
     def index
-      if params[:search].present?
-        @courses = Course.where('title LIKE ?', "%#{params[:search]}%").paginate(page: params[:page], per_page: 5)
-      else
-        @courses = Course.paginate(page: params[:page], per_page: 5)
-      end
+      @courses = Course.all
     end
   
     def show
