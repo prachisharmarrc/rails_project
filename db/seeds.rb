@@ -11,33 +11,60 @@
 
 require 'faker'
 
+# Create an Admin User
 User.create!(name: 'Admin', email: 'admin@example.com', password: 'password', password_confirmation: 'password')
 
-10.times do
-  user = User.create!(
+# Create Users
+users = []
+rand(10..20).times do
+  users << User.create!(
     name: Faker::Name.name,
-    email: Faker::Internet.email,
+    email: Faker::Internet.unique.email,
     password: 'password',
     password_confirmation: 'password'
   )
-  
-  course = Course.create!(
+end
+
+# Create Courses
+courses = []
+rand(20..100).times do
+  courses << Course.create!(
     title: Faker::Educator.course_name,
     description: Faker::Lorem.paragraph,
     price: Faker::Commerce.price(range: 0..100.0)
   )
-  
-  Enrollment.create!(user: user, course: course)
-  
-  lesson = Lesson.create!(
-    title: Faker::Educator.subject,
-    content: Faker::Lorem.paragraph,
-    course: course
-  )
-  
-  Discussion.create!(
-    content: Faker::Lorem.sentence,
-    user: user,
-    lesson: lesson
-  )
 end
+
+# Create Enrollments, Lessons, and Discussions
+courses.each do |course|
+  # Create Enrollments
+  rand(20..50).times do
+    Enrollment.create!(
+      user: users.sample,
+      course: course
+    )
+  end
+
+  # Create Lessons
+  lessons = []
+  rand(12..27).times do
+    lessons << Lesson.create!(
+      title: Faker::Educator.subject,
+      content: Faker::Lorem.paragraph,
+      course: course
+    )
+  end
+
+  # Create Discussions
+  lessons.each do |lesson|
+    rand(10..25).times do
+      Discussion.create!(
+        content: Faker::Lorem.sentence,
+        user: users.sample,
+        lesson: lesson
+      )
+    end
+  end
+end
+
+puts "Seed data created successfully!"

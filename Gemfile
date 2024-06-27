@@ -75,3 +75,5 @@ gem 'activeadmin'
 gem 'devise'
 
 gem 'active_storage_validations'
+
+gem 'tailwindcss-rails'
