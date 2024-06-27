@@ -1,0 +1,5 @@
+<h1>Enrollment</h1>
+<p>User: <%= @enrollment.user.name %></p>
+<p>Course: <%= @enrollment.course.title %></p>
+<%= link_to 'Edit', edit_enrollment_path(@enrollment) %> |
+<%= link_to 'Back to Enrollments', enrollments_path %>
