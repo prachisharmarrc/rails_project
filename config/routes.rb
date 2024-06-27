@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get '/about', to: 'pages#about'
+  
   resources :courses do
     resources :lessons, only: [:index, :new, :create, :show, :edit, :update, :destroy]
   end
